@@ -13,4 +13,24 @@
 		<module>jsclipboard-demo</module>
 	</modules>
 
+	<scm>
+		<connection>scm:git:https://github.com/vaadin4qbanos/vaadin-jsclipboard-addon.git</connection>
+		<developerConnection>scm:git:https://github.com/vaadin4qbanos/vaadin-jsclipboard-addon.git</developerConnection>
+		<url>https://github.com/vaadin4qbanos/vaadin-jsclipboard-addon</url>
+		<tag>HEAD</tag>
+	</scm>
+
+	<!-- Configuración de repositorios de distribución de artefactos -->
+	<distributionManagement>
+		<repository>
+			<id>sonatype-nexus-snapshots</id>
+			<name>deploy-releases</name>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+		</repository>
+		<snapshotRepository>
+			<id>sonatype-nexus-snapshots</id>
+			<name>deploy-snapshots</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
 </project>
