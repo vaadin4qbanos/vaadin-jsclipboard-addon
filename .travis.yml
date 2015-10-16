@@ -1,3 +1,6 @@
 language: java
 jdk: oraclejdk7
-#install: mvn install -q -U -DskipTests=true -Dmaven.test.redirectTestOutputToFile=true
+
+branches:
+  except:
+    - travis
