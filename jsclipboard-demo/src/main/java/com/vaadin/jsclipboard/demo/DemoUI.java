@@ -13,7 +13,6 @@ import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Notification;
-import com.vaadin.ui.Notification;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
@@ -48,19 +47,21 @@ public class DemoUI extends UI {
         });
 
         Button b = new Button("Copy to clipboard");
-        clipboard.apply(b, new JSClipboard.onSuccessListener() {
+        clipboard.apply(b);
+        clipboard.addSuccessListener(new JSClipboard.SuccessListener() {
 
             @Override
             public void onSuccess() {
-                Notification.show("Cool this thing realy work, jajajaj!");
+                Notification.show("Copy to clipboard successful");
             }
-        }, new JSClipboard.onErrorListener() {
+        });
+        clipboard.addErrorListener(new JSClipboard.ErrorListener() {
 
             @Override
             public void onError() {
-                Notification.show("Ups!, this lock like a breakeamiento, jajajaja",Notification.Type.ERROR_MESSAGE);
+                Notification.show("Copy to clipboard unsuccessful", Notification.Type.ERROR_MESSAGE);
             }
-        });      
+        });
 
         layout.addComponents(area, b);
 
