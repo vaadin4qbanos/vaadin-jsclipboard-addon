@@ -8,4 +8,5 @@ public class JSClipboardState extends JavaScriptExtensionState {
 
     public String text;
     public String selector = "#clipboard";
+    public boolean success;
 }

@@ -12,6 +12,8 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Notification;
+import com.vaadin.ui.Notification;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
@@ -37,7 +39,6 @@ public class DemoUI extends UI {
 
         final TextArea area = new TextArea();
         area.setValue("This is a sample text...");
-
         area.addBlurListener(new BlurListener() {
 
             @Override
@@ -47,7 +48,19 @@ public class DemoUI extends UI {
         });
 
         Button b = new Button("Copy to clipboard");
-        clipboard.apply(b);
+        clipboard.apply(b, new JSClipboard.onSuccessListener() {
+
+            @Override
+            public void onSuccess() {
+                Notification.show("Cool this thing realy work, jajajaj!");
+            }
+        }, new JSClipboard.onErrorListener() {
+
+            @Override
+            public void onError() {
+                Notification.show("Ups!, this lock like a breakeamiento, jajajaja",Notification.Type.ERROR_MESSAGE);
+            }
+        });      
 
         layout.addComponents(area, b);
 
