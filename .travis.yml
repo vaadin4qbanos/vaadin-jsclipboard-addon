@@ -1,15 +1,11 @@
 language: java
 jdk: oraclejdk7
-
-before_install: "git clone -b travis `git config --get remote.origin.url` target/travis"
-script: script: "mvn deploy --settings target/travis/settings.xml"
-
+before_install: git clone -b travis `git config --get remote.origin.url` target/travis
+script: "[ ${TRAVIS_PULL_REQUEST} = 'false' ] && mvn clean deploy --settings target/travis/settings.xml || mvn clean verify --settings target/travis/settings.xml"
 branches:
   except:
-    - travis
-
+  - travis
 env:
   global:
-  - secure: MoBdDGIqsXKQ8nk1AMg7AtRdsOLyRL1iFxmGF79L90DNDvkByGH07VXp+su1/cBEkVFd+GrkK98I30vG5+Y15orWv7S2obodEKWIhcXIS9zBzQEAN95xmQFFkU2xsZfYX7iU4Th/e0GFHW9ShknxgclkZcQyVAKz36cE2SwqA2g=
-  - secure: gOXeRbwR4SbAsFN7IX0ROn4f4jjq2n0svQrB8ZW6GLY9rqNYlh5a3ANlTwg+Zb+vO4NrUivmoCkXrGpSx72Z6g1DayZpgqwdgXwMK2YELC9D0tv5sdsgfNAIhPy0mSSi14N/MjIGtlBgmReBuY5YuDBLVmI3loO/FKJSYlMR9bw=
-
+  - secure: Vqo9FqqnXYlXjKtaEko+DjVlwD5i8GvC0bUoMkD3cP7eNLh+rmLnBV47hZXm/UxcXtGjyvRWNUKObsCyuKoZGcH97eh2WiFRRzcPXNt4xElWOhOiHbFp2g7re4jRm9U8qbF1Yvi3tB9cagnlcRoPDixXpkcjiF/su6yPpbZjK/1THIytXGko215uTAXCAFBOTeWFzl9SP8P9YU2uApTxga5TwAAmtHEF2P1aUInJ017j4kpTSdCpmcRsEhob0MHJE0yIKghSDe6CDEJA4P0pIy1ClzoqbDmAIw0tyj8EGhwhZKo2I2HJwZecBZuXEjZl675IAAvazp/Hez9Fj5jJfbILnsLkhzH39QZBB3ME0kJw5QXNEqh1aXRvzyE4T77oyk/OnnWjLMPcy7/2tyrNAKqAHA+mHp7xHjwVWoo9n8m+d30V4r2uCQ46qPiPQylWN+t6YfFQLCm7iMIhYY/pUBd8rQDJhqcTvRgxBnh1h6QSfDx6yYWjyO756z7kCQPOeUxGBA6aMpB5AIG9aNH7tcMXbBERlBd7l237t8e6aiCd7lQLPp6th8gyaNuN8Fs75RuGLCz19ybe0hvx8Q8O2REohJl5ASo9159y0UPJPbeTfQGmXqchcSDZibVAJXLeoX4yMcPccz5q10VdV27ATz7cPuTn1raId4DN69xtcH4=
+  - secure: oD9ryYogmbt8+Mq0Id6J+euhlYsF+t8+zKwSKx/OjSZ0sQ5MHwBVxx+//d4g6GrXec30iLxR5aJHk5M9m10zGKB9C3VgAHo9+xD2x5yRMNRMn2UL9BJ5Axfs3DITDocSPZoogq2/vGz5d6tjxmB/80ZzcLb29JK91EKU794b5WoFjNkjqYYa4dmRl5MZdnU7cPktko1gn2M1+32a/dBvRg9qZuZ3Jxgks5rIfa2ywQaD8tQia3RnT+3qIIbge6yqmuSdiLuVaBAnNpTnmt3qMgrUn3GtgGlOloZeusFGRgDV319mIjxDl54V3+ErO6INwMYnw4D6ZZ4t3cAeL+WQZtgV40fEOixDOFhJ0s186c0uKVKY4FbcfjrHUlTrqmpmNF2YPjFy/WPZ7JYLFnDEoyvhnSSXifBlnFP+Updacu4DqFDdPlykGUr6a/Lehm7P/d4vMRETYJLnwXG6uC2w22lsR7qYkJOVNe7y2NpHLFWd2ul7XUgGICVubKnrqEYgVKExVmis1SO4EhZkbxp4M7r1bLqxhiDcrxb/lPWqWi31TyYkCiAi54txFVFaGWVwuC+F7PLQdsz5LGLLd451iFN5cWi4LfAIneZ0ZJCwRAa2fHf+8UH1/uXtIikkTDtxvEc5bam89ohxbV9AevXoipBnboSOC1ImAEyQlHpFHXU=
