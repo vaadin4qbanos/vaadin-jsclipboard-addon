@@ -195,4 +195,18 @@
 		
 	</build>
 
+	<!-- Configuración de repositorios de distribución de artefactos -->
+	<distributionManagement>
+		<repository>
+			<id>sonatype-nexus-snapshots</id>
+			<name>deploy-releases</name>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+		</repository>
+		<snapshotRepository>
+			<id>sonatype-nexus-snapshots</id>
+			<name>deploy-snapshots</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+
 </project>
