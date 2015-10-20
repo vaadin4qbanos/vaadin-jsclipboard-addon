@@ -5,7 +5,7 @@
 	<groupId>com.github.vaadin4qbanos</groupId>
 	<artifactId>jsclipboard-root</artifactId>
 	<packaging>pom</packaging>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<name>JSClipboard Add-on Root Project</name>
 
 	<modules>
