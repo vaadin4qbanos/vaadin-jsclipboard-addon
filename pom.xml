@@ -5,7 +5,7 @@
 	<groupId>com.github.vaadin4qbanos</groupId>
 	<artifactId>jsclipboard-root</artifactId>
 	<packaging>pom</packaging>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0.2-SNAPSHOT</version>
 	<name>JSClipboard Add-on Root Project</name>
 
 	<modules>
@@ -19,6 +19,19 @@
 		<url>https://github.com/vaadin4qbanos/vaadin-jsclipboard-addon</url>
 		<tag>HEAD</tag>
 	</scm>
+	
+	<build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5</version>
+                <configuration>
+                    <tagNameFormat>v@{project.version}</tagNameFormat>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 	<!-- Configuración de repositorios de distribución de artefactos -->
 	<distributionManagement>
