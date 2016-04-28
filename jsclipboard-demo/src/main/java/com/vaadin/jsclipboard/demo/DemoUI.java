@@ -45,6 +45,7 @@ public class DemoUI extends UI {
                 clipboard.setText(area.getValue());
             }
         });
+        area.focus();
 
         Button b = new Button("Copy to clipboard");
         clipboard.apply(b);
