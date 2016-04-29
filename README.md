@@ -42,7 +42,7 @@ JSClipboard is written by Rubén Bresler Camps and Geanny Hernández Rodríguez
 
 ## Getting started
 
-Here is a simple example on how to try out the add-on component:
+Here is a simple example on how to try out the add-on component (this way is deprecated):
 
 ```java
 final JSClipboard clipboard = new JSClipboard();
@@ -61,6 +61,28 @@ clipboard.apply(b);
 layout.addComponents(area, b);
 ```
 
+This is the new way to do copy to clipboard using the library javascript [clipboard.js](https://clipboardjs.com/)
+```java
+final TextArea anotherArea = new TextArea();
+anotherArea.setId("clipboardTarget");
+anotherArea.setValue("Another example to copy to clipboard");
+
+ClipboardButton clipboardButton = new ClipboardButton("clipboardTarget");
+clipboardButton.addSuccessListener(new ClipboardButton.SuccessListener() {
+
+    @Override
+    public void onSuccess() {
+        Notification.show("Copy to clipboard successful");
+    }
+});
+clipboardButton.addErrorListener(new ClipboardButton.ErrorListener() {
+
+    @Override
+    public void onError() {
+        Notification.show("Copy to clipboard unsuccessful", Notification.Type.ERROR_MESSAGE);
+    }
+});
+```
 For a more comprehensive example, see src/test/java/com/vaadin/jsclipboard/demo/DemoUI.java
 
 
