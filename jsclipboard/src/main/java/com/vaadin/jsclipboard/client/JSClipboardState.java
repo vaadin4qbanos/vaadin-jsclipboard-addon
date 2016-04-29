@@ -2,6 +2,7 @@ package com.vaadin.jsclipboard.client;
 
 import com.vaadin.shared.JavaScriptExtensionState;
 
+@Deprecated
 public class JSClipboardState extends JavaScriptExtensionState {
 
     private static final long serialVersionUID = 6589269702904751560L;

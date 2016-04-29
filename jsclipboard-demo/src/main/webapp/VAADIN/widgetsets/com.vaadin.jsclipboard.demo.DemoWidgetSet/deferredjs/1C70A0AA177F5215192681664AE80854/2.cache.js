@@ -1,1 +1,0 @@
-$wnd.com_vaadin_jsclipboard_demo_DemoWidgetSet.runAsyncCallback2('bab(1513,1,VId);_.tc=function f8b(){AWb((!tWb&&(tWb=new FWb),tWb),this.a.d)};ACd(Qh)(2);\n//# sourceURL=com.vaadin.jsclipboard.demo.DemoWidgetSet-2.js\n')

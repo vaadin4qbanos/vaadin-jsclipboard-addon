@@ -3,6 +3,7 @@ window.com_vaadin_jsclipboard_JSClipboard = function() {
 
     var clickHandler = function(event) {
         var copyTextArea = document.createElement('textarea');
+        copyTextArea.focus();
         copyTextArea.value = cb.getState().text;
 
         document.body.appendChild(copyTextArea);

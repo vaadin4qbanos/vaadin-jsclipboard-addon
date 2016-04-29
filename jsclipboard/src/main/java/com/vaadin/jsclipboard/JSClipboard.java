@@ -15,7 +15,8 @@ import com.vaadin.ui.JavaScriptFunction;
 
 import elemental.json.JsonArray;
 
-@JavaScript("clipboard.js")
+@JavaScript({"clipboard.js"})
+@Deprecated
 public class JSClipboard extends AbstractJavaScriptExtension {
 
     private static final long serialVersionUID = 5382186808485208584L;
@@ -35,13 +36,15 @@ public class JSClipboard extends AbstractJavaScriptExtension {
     List<ErrorListener> errorListeners = new ArrayList<ErrorListener>();
 
     public void addSuccessListener(SuccessListener listener) {
-        if (listener != null)
+        if (listener != null) {
             successListeners.add(listener);
+        }
     }
 
     public void addErrorListener(ErrorListener listener) {
-        if (listener != null)
+        if (listener != null) {
             errorListeners.add(listener);
+        }
     }
 
     public JSClipboard() {
