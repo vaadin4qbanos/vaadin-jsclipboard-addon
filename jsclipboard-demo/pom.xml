@@ -4,7 +4,7 @@
 	<groupId>com.github.vaadin4qbanos</groupId>
 	<artifactId>jsclipboard-demo</artifactId>
 	<packaging>war</packaging>
-	<version>1.0.3-SNAPSHOT</version>
+	<version>1.0.3</version>
 	<name>JSClipboard Add-on Demo</name>
 
 	<properties>
