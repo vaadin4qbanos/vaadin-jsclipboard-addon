@@ -13,7 +13,8 @@ import com.vaadin.server.ClientConnector;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.JavaScriptFunction;
 
-import elemental.json.JsonArray;
+import org.json.JSONArray;
+import org.json.JSONException;
 
 @JavaScript({"clipboard.js"})
 @Deprecated
@@ -50,7 +51,7 @@ public class JSClipboard extends AbstractJavaScriptExtension {
     public JSClipboard() {
         addFunction("notifyStatus", new JavaScriptFunction() {
             @Override
-            public void call(JsonArray arguments) {
+            public void call(JSONArray arguments) throws JSONException {
                 boolean status = arguments.getBoolean(0);
                 if (status) {
                     for (SuccessListener successListener : successListeners) {
