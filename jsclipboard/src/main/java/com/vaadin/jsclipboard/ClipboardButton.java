@@ -17,6 +17,7 @@ package com.vaadin.jsclipboard;
 
 import com.vaadin.annotations.JavaScript;
 import com.vaadin.jsclipboard.client.ClipboardButtonState;
+import com.vaadin.server.LegacyApplication;
 import com.vaadin.ui.AbstractJavaScriptComponent;
 import com.vaadin.ui.JavaScriptFunction;
 import elemental.json.JsonArray;
