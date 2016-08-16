@@ -17,6 +17,7 @@ package com.vaadin.jsclipboard;
 
 import com.vaadin.annotations.JavaScript;
 import com.vaadin.jsclipboard.client.ClipboardButtonState;
+import com.vaadin.server.LegacyApplication;
 import com.vaadin.ui.AbstractJavaScriptComponent;
 import com.vaadin.ui.JavaScriptFunction;
 import org.json.JSONArray;
@@ -30,7 +31,7 @@ import java.util.UUID;
  *
  * @author Geanny Hernández Rodríguez
  */
-@JavaScript({"bower_components/clipboard/dist/clipboard.js", "clipboard_button.js"})
+@JavaScript({"bower_components/clipboard/dist/clipboard.min.js", "clipboard_button.js"})
 public class ClipboardButton extends AbstractJavaScriptComponent {
 
     private static final long serialVersionUID = 1L;
