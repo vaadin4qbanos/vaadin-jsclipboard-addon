@@ -20,7 +20,8 @@ import com.vaadin.jsclipboard.client.ClipboardButtonState;
 import com.vaadin.server.LegacyApplication;
 import com.vaadin.ui.AbstractJavaScriptComponent;
 import com.vaadin.ui.JavaScriptFunction;
-import elemental.json.JsonArray;
+import org.json.JSONArray;
+import org.json.JSONException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -71,7 +72,7 @@ public class ClipboardButton extends AbstractJavaScriptComponent {
 
         addFunction("notifyStatus", new JavaScriptFunction() {
             @Override
-            public void call(JsonArray arguments) {
+            public void call(JSONArray arguments) throws JSONException {
                 boolean status = arguments.getBoolean(0);
                 if (status) {
                     for (SuccessListener successListener : successListeners) {
