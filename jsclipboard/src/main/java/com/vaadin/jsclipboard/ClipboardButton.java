@@ -15,97 +15,117 @@
  */
 package com.vaadin.jsclipboard;
 
-import com.vaadin.annotations.JavaScript;
-import com.vaadin.jsclipboard.client.ClipboardButtonState;
-import com.vaadin.server.LegacyApplication;
-import com.vaadin.ui.AbstractJavaScriptComponent;
-import com.vaadin.ui.JavaScriptFunction;
-import org.json.JSONArray;
-import org.json.JSONException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.apache.commons.lang3.StringUtils;
+
+import com.vaadin.annotations.JavaScript;
+import com.vaadin.jsclipboard.client.ClipboardButtonState;
+import com.vaadin.ui.AbstractJavaScriptComponent;
+import com.vaadin.ui.JavaScriptFunction;
+
+import elemental.json.JsonArray;
+
 /**
  *
  * @author Geanny Hernández Rodríguez
  */
-@JavaScript({"bower_components/clipboard/dist/clipboard.min.js", "clipboard_button.js"})
+@JavaScript({ "bower_components/clipboard/dist/clipboard.min.js", "clipboard_button.js" })
 public class ClipboardButton extends AbstractJavaScriptComponent {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    public interface SuccessListener extends Serializable {
+	public interface SuccessListener extends Serializable {
 
-        void onSuccess();
-    }
+		void onSuccess();
+	}
 
-    public interface ErrorListener extends Serializable {
+	public interface ErrorListener extends Serializable {
 
-        void onError();
-    }
+		void onError();
+	}
 
-    List<SuccessListener> successListeners = new ArrayList<SuccessListener>();
+	List<SuccessListener> successListeners = new ArrayList<SuccessListener>();
 
-    List<ErrorListener> errorListeners = new ArrayList<ErrorListener>();
+	List<ErrorListener> errorListeners = new ArrayList<ErrorListener>();
 
-    public void addSuccessListener(SuccessListener listener) {
-        if (listener != null) {
-            successListeners.add(listener);
-        }
-    }
+	public void addSuccessListener(SuccessListener listener) {
+		if (listener != null) {
+			successListeners.add(listener);
+		}
+	}
 
-    public void addErrorListener(ErrorListener listener) {
-        if (listener != null) {
-            errorListeners.add(listener);
-        }
-    }
+	public void addErrorListener(ErrorListener listener) {
+		if (listener != null) {
+			errorListeners.add(listener);
+		}
+	}
 
-    public ClipboardButton(String targetId) {
-        if (targetId == null || "".equals(targetId)) {
-            throw new RuntimeException("The target element must not be empty or null");
-        }
+	public ClipboardButton() {
+		setUpClipboardCommon();
+	}
 
-        setClipboardButtonClass();
-        setTarget(targetId);
+	public ClipboardButton(String targetId) {
+		if (StringUtils.isEmpty(targetId)) {
+			throw new RuntimeException("The target element must not be empty or null");
+		}
 
-        addFunction("notifyStatus", new JavaScriptFunction() {
-            @Override
-            public void call(JSONArray arguments) throws JSONException {
-                boolean status = arguments.getBoolean(0);
-                if (status) {
-                    for (SuccessListener successListener : successListeners) {
-                        successListener.onSuccess();
-                    }
-                } else {
-                    for (ErrorListener errorListener : errorListeners) {
-                        errorListener.onError();
-                    }
-                }
-            }
-        });
-    }
+		setTarget(targetId);
+		setUpClipboardCommon();
+	}
 
-    public void setClipboardButtonCaption(String caption) {
-        getState().clipboardButtonCaption = caption;
-    }
+	private void setUpClipboardCommon() {
+		setClipboardButtonClass();
+		addFunction("notifyStatus", new JavaScriptFunction() {
 
-    private void setTarget(String targetId) {
-        getState().targetId = targetId;
-    }
+			private static final long serialVersionUID = 3082847352373465144L;
 
-    private void setClipboardButtonClass() {
-        getState().buttonClass = "btn" + UUID.randomUUID().toString().replace("-", "_");
-    }
+			@Override
+			public void call(JsonArray arguments) {
+				boolean status = arguments.getBoolean(0);
+				if (status) {
+					for (SuccessListener successListener : successListeners) {
+						successListener.onSuccess();
+					}
+				} else {
+					for (ErrorListener errorListener : errorListeners) {
+						errorListener.onError();
+					}
+				}
+			}
+		});
+	}
 
-    public void setClipboardTarget(String targetId) {
-        setTarget(targetId);
-    }
+	public void setClipboardButtonCaption(String caption) {
+		getState().clipboardButtonCaption = caption;
+	}
 
-    @Override
-    protected ClipboardButtonState getState() {
-        return (ClipboardButtonState) super.getState();
-    }
+	private void setTarget(String targetId) {
+		getState().targetId = targetId;
+	}
+
+	private void setStateClipboardText(String clipboardText) {
+		getState().clipboardText = clipboardText;
+	}
+
+	private void setClipboardButtonClass() {
+		getState().buttonClass = "btn" + UUID.randomUUID().toString().replace("-", "_");
+	}
+
+	public void setClipboardTarget(String targetId) {
+		setTarget(targetId);
+	}
+
+	public void setClipboardText(String clipboardText) {
+		setStateClipboardText(clipboardText);
+	}
+
+	@Override
+	protected ClipboardButtonState getState() {
+		return (ClipboardButtonState) super.getState();
+	}
 
 }

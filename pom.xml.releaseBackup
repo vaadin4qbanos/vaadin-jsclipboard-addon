@@ -4,12 +4,8 @@
 	<groupId>com.github.vaadin4qbanos</groupId>
 	<artifactId>jsclipboard-root</artifactId>
 	<packaging>pom</packaging>
-	<version>1.0.5-SNAPSHOT</version>
+	<version>1.0.4-SNAPSHOT</version>
 	<name>JSClipboard Add-on Root Project</name>
-
-	<properties>
-	<vaadin.version>8.0.2</vaadin.version>
-	</properties>
 
 	<modules>
 		<module>jsclipboard</module>
