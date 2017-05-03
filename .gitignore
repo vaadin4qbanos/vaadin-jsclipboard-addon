@@ -1,1 +1,10 @@
-/jsclipboard-demo/src/main/webapp/VAADIN/widgetsets/
+/**/widgetsets/
+.*
+.settings/
+.project
+.classpath
+.idea/
+*.iml
+target/
+pom.xml.releaseBackup
+release.properties
