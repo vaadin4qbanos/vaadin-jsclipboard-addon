@@ -23,8 +23,9 @@ import com.vaadin.shared.ui.JavaScriptComponentState;
  */
 public class ClipboardButtonState extends JavaScriptComponentState {
 
-    private static final long serialVersionUID = 1L;
-    public String clipboardButtonCaption = "Copy to clipboard";
-    public String targetId = "";
-    public String buttonClass = "";
+	private static final long serialVersionUID = 1L;
+	public String clipboardButtonCaption = "Copy to clipboard";
+	public String targetId = "";
+	public String buttonClass = "";
+	public String clipboardText = "";
 }

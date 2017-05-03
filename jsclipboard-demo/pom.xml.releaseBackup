@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
-	<parent>
-		<groupId>com.github.vaadin4qbanos</groupId>
-		<artifactId>jsclipboard-root</artifactId>	
-		<version>1.0.5-SNAPSHOT</version>
-	</parent>	
-
-
 	<groupId>com.github.vaadin4qbanos</groupId>
 	<artifactId>jsclipboard-demo</artifactId>
 	<packaging>war</packaging>
-	<version>1.0.5-SNAPSHOT</version>
+	<version>1.0.4-SNAPSHOT</version>
 	<name>JSClipboard Add-on Demo</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-<!-- 		<vaadin.version>7.3.7</vaadin.version> -->
+		<vaadin.version>7.3.7</vaadin.version>
 		<vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
 	</properties>
 

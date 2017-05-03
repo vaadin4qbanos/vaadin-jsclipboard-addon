@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import org.json.JSONArray;
-import org.json.JSONException;
 
 import com.vaadin.annotations.JavaScript;
 import com.vaadin.jsclipboard.client.JSClipboardState;
@@ -14,6 +12,8 @@ import com.vaadin.server.AbstractJavaScriptExtension;
 import com.vaadin.server.ClientConnector;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.JavaScriptFunction;
+
+import elemental.json.JsonArray;
 
 /**
  * @deprecated Use instead {@link com.vaadin.jsclipboard.ClipboardButton}
@@ -53,7 +53,7 @@ public class JSClipboard extends AbstractJavaScriptExtension {
 	public JSClipboard() {
 		addFunction("notifyStatus", new JavaScriptFunction() {
 			@Override
-			public void call(JSONArray arguments) throws JSONException {
+			public void call(JsonArray arguments) {
 				boolean status = arguments.getBoolean(0);
 				if (status) {
 					for (SuccessListener successListener : successListeners) {
