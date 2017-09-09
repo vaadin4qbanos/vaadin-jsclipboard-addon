@@ -61,7 +61,7 @@
 		<dependency>
 			<groupId>com.github.vaadin4qbanos</groupId>
 			<artifactId>jsclipboard</artifactId>
-			<version>${version}</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.vaadin</groupId>
