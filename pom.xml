@@ -4,7 +4,7 @@
 	<groupId>com.github.vaadin4qbanos</groupId>
 	<artifactId>vaadin-jsclipboard-root</artifactId>
 	<packaging>pom</packaging>
-	<version>1.0.6</version>
+	<version>1.0.7-SNAPSHOT</version>
 	<name>JSClipboard Add-on Root Project</name>
 
 	<properties>
@@ -20,7 +20,7 @@
 		<connection>scm:git:https://github.com/vaadin4qbanos/vaadin-jsclipboard-addon.git</connection>
 		<developerConnection>scm:git:https://github.com/vaadin4qbanos/vaadin-jsclipboard-addon.git</developerConnection>
 		<url>https://github.com/vaadin4qbanos/vaadin-jsclipboard-addon</url>
-		<tag>v1.0.6</tag>
+		<tag>HEAD</tag>
 	</scm>
 	
 	<build>
