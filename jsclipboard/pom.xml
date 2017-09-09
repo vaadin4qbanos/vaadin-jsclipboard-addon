@@ -8,14 +8,13 @@
 		<version>1.0.6-SNAPSHOT</version>
 	</parent>
 	
-	<groupId>com.github.vaadin4qbanos</groupId>
+	<!--<groupId>com.github.vaadin4qbanos</groupId>-->
 	<artifactId>jsclipboard</artifactId>
 	<packaging>jar</packaging>
 	<name>JSClipboard Add-on</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-<!-- 		<vaadin.version>7.3.7</vaadin.version> -->
 		<vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
 
 		<!-- ZIP Manifest fields -->
