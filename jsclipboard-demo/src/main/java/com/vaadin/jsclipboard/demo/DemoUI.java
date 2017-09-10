@@ -1,27 +1,16 @@
 package com.vaadin.jsclipboard.demo;
 
-import javax.servlet.annotation.WebServlet;
-
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
 import com.vaadin.annotations.VaadinServletConfiguration;
-import com.vaadin.event.FieldEvents.BlurEvent;
-import com.vaadin.event.FieldEvents.BlurListener;
 import com.vaadin.jsclipboard.ClipboardButton;
-import com.vaadin.jsclipboard.JSClipboard;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.shared.ui.ContentMode;
-import com.vaadin.ui.Alignment;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.Notification;
-import com.vaadin.ui.TextArea;
-import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.Window;
+import com.vaadin.ui.*;
+
+import javax.servlet.annotation.WebServlet;
 
 @Theme("demo")
 @Title("JSClipboard Add-on Demo")
@@ -40,52 +29,9 @@ public class DemoUI extends UI {
 		layout.setSizeFull();
 		layout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
 
-		createOldWayCopyToClipboard(layout);
 		createNewWayCopyToClipboard(layout);
 
 		setContent(layout);
-	}
-
-	private void createOldWayCopyToClipboard(HorizontalLayout layout) {
-
-		final JSClipboard clipboard = new JSClipboard();
-
-		final TextArea area = new TextArea();
-
-		area.setValue("This is a sample text...");
-		area.addBlurListener(new BlurListener() {
-
-			@Override
-			public void blur(BlurEvent event) {
-				clipboard.setText(area.getValue());
-			}
-		});
-		area.focus();
-
-		Button b = new Button("Copy to clipboard");
-		clipboard.apply(b);
-		clipboard.addSuccessListener(new JSClipboard.SuccessListener() {
-
-			@Override
-			public void onSuccess() {
-				Notification.show("Copy to clipboard successful");
-			}
-		});
-		clipboard.addErrorListener(new JSClipboard.ErrorListener() {
-
-			@Override
-			public void onError() {
-				Notification.show("Copy to clipboard unsuccessful", Notification.Type.ERROR_MESSAGE);
-			}
-		});
-
-		VerticalLayout wrapper = new VerticalLayout();
-		wrapper.setSpacing(true);
-		wrapper.setDefaultComponentAlignment(Alignment.TOP_CENTER);
-		wrapper.addComponents(area, b);
-		wrapper.setWidth("100%");
-
-		layout.addComponent(wrapper);
 	}
 
 	private void createNewWayCopyToClipboard(HorizontalLayout layout) {
