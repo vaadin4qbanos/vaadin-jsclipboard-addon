@@ -13,6 +13,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
+                <gpg.keyname>67BBC6E6</gpg.keyname>
                 <gpg.passphrase>${env.CI_DEPLOY_GPG_PASSWORD}</gpg.passphrase>
             </properties>
         </profile>
