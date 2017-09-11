@@ -3,6 +3,7 @@ package com.vaadin.jsclipboard.demo;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
 import com.vaadin.annotations.VaadinServletConfiguration;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.jsclipboard.ClipboardButton;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.server.VaadinRequest;
@@ -60,7 +61,7 @@ public class DemoUI extends UI {
 			}
 		});
 
-		Button source = new Button(FontAwesome.CODE);
+		Button source = new Button(VaadinIcons.CODE);
 		source.addClickListener(new Button.ClickListener() {
 
 			@Override
