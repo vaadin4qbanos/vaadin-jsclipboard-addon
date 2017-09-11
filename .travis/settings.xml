@@ -6,4 +6,15 @@
             <password>${env.CI_DEPLOY_PASSWORD}</password>
         </server>
     </servers>
+    <profiles>
+        <profile>
+            <id>ossrh</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <gpg.passphrase>${env.CI_DEPLOY_GPG_PASSWORD}</gpg.passphrase>
+            </properties>
+        </profile>
+    </profiles>
 </settings>
