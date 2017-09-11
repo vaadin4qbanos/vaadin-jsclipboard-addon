@@ -12,4 +12,4 @@ env:
 before_install:
   - openssl aes-256-cbc -K $encrypted_1645300b04d0_key -iv $encrypted_1645300b04d0_iv -in .travis/all.pgp.enc -out all.pgp -d
   - ls .
-  - gpg --import all.gpg
+  - gpg --import all.pgp
