@@ -13,7 +13,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <gpg.keyname>vaadin4qbanos</gpg.keyname>
+                <gpg.keyname>${env.CI_DEPLOY_GPG_KEY}</gpg.keyname>
                 <gpg.passphrase>${env.CI_DEPLOY_GPG_PASSWORD}</gpg.passphrase>
             </properties>
         </profile>
