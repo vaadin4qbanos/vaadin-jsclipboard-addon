@@ -37,8 +37,8 @@
 
     <scm>
         <url>https://github.com/vaadin4qbanos/vaadin-jsclipboard-addon.git</url>
-        <connection>scm:git:git://github.com/vaadin4qbanos/vaadin-jsclipboard-addon.git</connection>
-        <developerConnection>scm:git:git://github.com/vaadin4qbanos/vaadin-jsclipboard-addon.git</developerConnection>
+        <connection>scm:git:git@github.com:vaadin4qbanos/vaadin-jsclipboard-addon.git</connection>
+        <developerConnection>scm:git:git@github.com:vaadin4qbanos/vaadin-jsclipboard-addon.git</developerConnection>
         <tag>v1.0.8</tag>
     </scm>
 
