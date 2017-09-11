@@ -1,6 +1,6 @@
 language: java
 jdk: oraclejdk8
-script: mvn deploy -DskipTests -pl :jsclipboard --settings .travis/settings.xml
+script: mvn deploy -DskipTests --settings .travis/settings.xml
 branches:
   only:
     - master
