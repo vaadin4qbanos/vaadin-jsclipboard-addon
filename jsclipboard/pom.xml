@@ -13,6 +13,8 @@
     <packaging>jar</packaging>
     <version>1.0.8</version>
     <name>JSClipboard Add-on</name>
+    <description>JSClipboard Add-on</description>
+    <url>https://github.com/vaadin4qbanos/vaadin-jsclipboard-addon.git</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -32,6 +34,17 @@
         <name>vaadin4qbanos</name>
         <url>https://github.com/vaadin4qbanos/vaadin-jsclipboard-addon</url>
     </organization>
+
+    <developers>
+        <developer>
+            <name>Rubén Bresler</name>
+            <organization>vaadin4qbanos</organization>
+        </developer>
+        <developer>
+            <name>Geanny Hernández</name>
+            <organization>vaadin4qbanos</organization>
+        </developer>
+    </developers>
 
     <scm>
         <url>https://github.com/vaadin4qbanos/vaadin-jsclipboard-addon.git</url>
