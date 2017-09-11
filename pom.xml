@@ -118,7 +118,6 @@
         </plugins>
     </build>
 
-    <!-- Configuración de repositorios de distribución de artefactos -->
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
