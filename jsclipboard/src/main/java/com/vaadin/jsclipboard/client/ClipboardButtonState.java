@@ -20,6 +20,7 @@ import com.vaadin.shared.ui.JavaScriptComponentState;
 /**
  *
  * @author Geanny Hernández Rodríguez
+ * @deprecated 
  */
 public class ClipboardButtonState extends JavaScriptComponentState {
 

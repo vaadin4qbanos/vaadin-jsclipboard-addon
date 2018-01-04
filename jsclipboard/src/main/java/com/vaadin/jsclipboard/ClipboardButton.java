@@ -32,8 +32,9 @@ import elemental.json.JsonArray;
 /**
  *
  * @author Geanny Hernández Rodríguez
+ * @deprecated use the extension {@link JSClipboard}
  */
-@JavaScript({ "bower_components/clipboard/dist/clipboard.min.js", "clipboard_button.js" })
+@JavaScript({ "bower_components/clipboard/dist/clipboard.d.min.js", "clipboard_button.js" })
 public class ClipboardButton extends AbstractJavaScriptComponent {
 
 	private static final long serialVersionUID = 1L;
