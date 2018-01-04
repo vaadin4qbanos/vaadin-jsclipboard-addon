@@ -17,7 +17,6 @@ import com.vaadin.ui.JavaScriptFunction;
 import elemental.json.JsonArray;
 import java.util.UUID;
 
-
 @JavaScript({"bower_components/clipboard/dist/clipboard.min.js", "clipboard.js"})
 public class JSClipboard extends AbstractJavaScriptExtension {
 
@@ -47,6 +46,7 @@ public class JSClipboard extends AbstractJavaScriptExtension {
         if (listener != null) {
             errorListeners.add(listener);
         }
+
     }
 
     public JSClipboard() {
@@ -70,7 +70,7 @@ public class JSClipboard extends AbstractJavaScriptExtension {
 
     private void setClipboardButtonClass() {
         getState().buttonClass = "btn" + UUID.randomUUID().toString().replace("-", "_");
-        getState().targetSelector = "#target" + UUID.randomUUID().toString().replace("-", "_");
+        getState().targetSelector = "#target" + UUID.randomUUID().toString().replace("-", "_");       
     }
 
     @Override
@@ -84,28 +84,36 @@ public class JSClipboard extends AbstractJavaScriptExtension {
     }
 
     public void apply(Button trigger, Component target) {
-        extend(trigger);      
+        extend(trigger);
         trigger.addStyleName(getState().selector);
         trigger.addStyleName(getState().buttonClass);
         parseSelector(target);
     }
-    
-    
+
     private void parseSelector(Component target) {
-		if (StringUtils.isNotEmpty(target.getId())) {
-			String value;
-			if (target.getId().startsWith("#")) {
-				value = target.getId();
-			} else {
-				value = "#" + target.getId();
-			}
-			getState().targetSelector = StringUtils.replace(value, ".", "\\.");
-		} else {
-			target.setId(getState().targetSelector.replaceFirst("#", ""));
-		}
-	}
-    
+        if (StringUtils.isNotEmpty(target.getId())) {
+            String value;
+            if (target.getId().startsWith("#")) {
+                value = target.getId();
+            } else {
+                value = "#" + target.getId();
+            }
+            getState().targetSelector = StringUtils.replace(value, ".", "\\.");
+        } else {
+            target.setId(getState().targetSelector.replaceFirst("#", ""));
+        }
+    }
+
     public void setText(String text) {
         getState().text = text;
     }
+
+    public void setEnabled(boolean enabled) {
+        getState().enableClipboard = enabled;
+    }
+
+    public boolean isEnabled() {
+        return getState().enableClipboard;
+    }
+
 }

@@ -5,7 +5,13 @@
 
 
 
-JSClipboard is an JS extension for Vaadin 7 that allow to copy arbitrary text to clipboard using JavaScript only.
+JSClipboard is an JS extension for Vaadin 7 & 8 that allow to copy arbitrary text to clipboard using JavaScript only.
+
+## Improvements
+- It allows stylize the button.
+- The method setEnabled works correctly.
+- Adds a button that works as a wrapper for the extension (JSClipboardButton)
+
 
 ## Download release
 

@@ -27,14 +27,14 @@ public class DemoUI extends UI {
 
     @Override
     protected void init(VaadinRequest request) {
-        final GridLayout layout = new GridLayout(2,2);
+        final GridLayout layout = new GridLayout(2, 2);
         layout.setStyleName("demoContentLayout");
         layout.setSizeFull();
         layout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
 
         createNewWayCopyToClipboardUsingExtension(layout);
         createNewWayCopyToClipboardUsingWrapperButton(layout);
-        
+        createNewWayCopyToClipboardUsingWrapperButtonDisabled(layout);
         createOldWayCopyToClipboard(layout);
 
         setContent(layout);
@@ -50,34 +50,22 @@ public class DemoUI extends UI {
         final TextArea area = new TextArea();
 
         area.setValue("This is a sample text...");
-        area.setId("tocopie");       
+        area.setId("tocopie-extension");
 
         Button b = new Button("Copy to clipboard");
         clipboard.apply(b, area);
-        clipboard.addSuccessListener(new JSClipboard.SuccessListener() {
-
-            @Override
-            public void onSuccess() {
-                Notification.show("Copy to clipboard successful");
-            }
+        clipboard.addSuccessListener(() -> {
+            Notification.show("Copy to clipboard successful");
         });
-        clipboard.addErrorListener(new JSClipboard.ErrorListener() {
-
-            @Override
-            public void onError() {
-                Notification.show("Copy to clipboard unsuccessful", Notification.Type.ERROR_MESSAGE);
-            }
+        clipboard.addErrorListener(() -> {
+            Notification.show("Copy to clipboard unsuccessful", Notification.Type.ERROR_MESSAGE);
         });
 
         Button source = new Button(VaadinIcons.CODE);
-        source.addClickListener(new Button.ClickListener() {
-
-            @Override
-            public void buttonClick(Button.ClickEvent event) {
-                Window win = createNewWaySourceWindow();
-                win.setModal(true);
-                UI.getCurrent().addWindow(win);
-            }
+        source.addClickListener((Button.ClickEvent event) -> {
+            Window win = createNewWaySourceWindow();
+            win.setModal(true);
+            UI.getCurrent().addWindow(win);
         });
 
         VerticalLayout wrapper = new VerticalLayout();
@@ -86,7 +74,7 @@ public class DemoUI extends UI {
         wrapper.addComponents(new HorizontalLayout(label), area, b, source);
         wrapper.setWidth("100%");
 
-        layout.addComponent(wrapper,0,0);
+        layout.addComponent(wrapper, 0, 0);
     }
 
     private void createNewWayCopyToClipboardUsingWrapperButton(GridLayout layout) {
@@ -97,33 +85,21 @@ public class DemoUI extends UI {
         final TextArea area = new TextArea();
 
         area.setValue("This is a sample text...");
-        area.setId("tocopie");
-      
+        area.setId("tocopie-extension-wrapper");
+
         JSClipboardButton b = new JSClipboardButton(area, "Copy to clipboard");
-        b.addSuccessListener(new JSClipboard.SuccessListener() {
-
-            @Override
-            public void onSuccess() {
-                Notification.show("Copy to clipboard successful");
-            }
+        b.addSuccessListener(() -> {
+            Notification.show("Copy to clipboard successful");
         });
-        b.addErrorListener(new JSClipboard.ErrorListener() {
-
-            @Override
-            public void onError() {
-                Notification.show("Copy to clipboard unsuccessful", Notification.Type.ERROR_MESSAGE);
-            }
+        b.addErrorListener(() -> {
+            Notification.show("Copy to clipboard unsuccessful", Notification.Type.ERROR_MESSAGE);
         });
 
         Button source = new Button(VaadinIcons.CODE);
-        source.addClickListener(new Button.ClickListener() {
-
-            @Override
-            public void buttonClick(Button.ClickEvent event) {
-                Window win = createNewWayWrapperSourceWindow();
-                win.setModal(true);
-                UI.getCurrent().addWindow(win);
-            }
+        source.addClickListener((Button.ClickEvent event) -> {
+            Window win = createNewWayWrapperSourceWindow();
+            win.setModal(true);
+            UI.getCurrent().addWindow(win);
         });
 
         VerticalLayout wrapper = new VerticalLayout();
@@ -132,14 +108,55 @@ public class DemoUI extends UI {
         wrapper.addComponents(new HorizontalLayout(label), area, b, source);
         wrapper.setWidth("100%");
 
-        layout.addComponent(wrapper,1,0);
+        layout.addComponent(wrapper, 1, 0);
+    }
+
+    private void createNewWayCopyToClipboardUsingWrapperButtonDisabled(GridLayout layout) {
+        Label label = new Label(
+                "This variant was done using the library <a href='https://clipboardjs.com/' >clipboard.js</a> as a Extension using a wrapper"
+                + "<br>In this example the Button is disabled.");
+        label.setContentMode(ContentMode.HTML);
+
+        final TextArea area = new TextArea();
+
+        area.setValue("This is a sample text...");
+        area.setId("tocopie-extension-wrapper-disabled");
+
+        JSClipboardButton b = new JSClipboardButton(area, "Copy to clipboard");
+        b.setEnabled(false);
+        b.addSuccessListener(() -> {
+            Notification.show("Copy to clipboard successful");
+        });
+        b.addErrorListener(() -> {
+            Notification.show("Copy to clipboard unsuccessful", Notification.Type.ERROR_MESSAGE);
+        });
+
+        Button source = new Button(VaadinIcons.CODE);
+        source.addClickListener((Button.ClickEvent event) -> {
+            Window win = createNewWayWrapperSourceWindow();
+            win.setModal(true);
+            UI.getCurrent().addWindow(win);
+        });
+
+        Button toggleEnable = new Button("Toggle Enabled");
+        toggleEnable.addClickListener(event -> {
+            b.setEnabled(!b.isEnabled());
+        });
+
+        VerticalLayout wrapper = new VerticalLayout();
+        wrapper.setSpacing(true);
+        wrapper.setDefaultComponentAlignment(Alignment.TOP_CENTER);
+        wrapper.addComponents(new HorizontalLayout(label), area, b, toggleEnable, source);
+        wrapper.setWidth("100%");
+
+        layout.addComponent(wrapper, 0, 1);
     }
 
     private void createOldWayCopyToClipboard(GridLayout layout) {
 
         Label label = new Label(
                 "This variant  will be removed, see <a target=\"_blank\" href=\"https://github.com/vaadin4qbanos/vaadin-jsclipboard-addon/blob/master/README.md\">README</a><br>"
-                        + "This variant was done using the library <a href='https://clipboardjs.com/' >clipboard.js</a> as a Component");
+                + "This variant was done using the library <a href='https://clipboardjs.com/' >clipboard.js</a> as a Component");
         label.setContentMode(ContentMode.HTML);
 
         final TextArea anotherArea = new TextArea();
@@ -147,30 +164,18 @@ public class DemoUI extends UI {
         anotherArea.setValue("Another example to copy to clipboard");
 
         ClipboardButton clipboardButton = new ClipboardButton("clipboardTarget");
-        clipboardButton.addSuccessListener(new ClipboardButton.SuccessListener() {
-
-            @Override
-            public void onSuccess() {
-                Notification.show("Copy to clipboard successful");
-            }
+        clipboardButton.addSuccessListener(() -> {
+            Notification.show("Copy to clipboard successful");
         });
-        clipboardButton.addErrorListener(new ClipboardButton.ErrorListener() {
-
-            @Override
-            public void onError() {
-                Notification.show("Copy to clipboard unsuccessful", Notification.Type.ERROR_MESSAGE);
-            }
+        clipboardButton.addErrorListener(() -> {
+            Notification.show("Copy to clipboard unsuccessful", Notification.Type.ERROR_MESSAGE);
         });
 
         Button source = new Button(VaadinIcons.CODE);
-        source.addClickListener(new Button.ClickListener() {
-
-            @Override
-            public void buttonClick(Button.ClickEvent event) {
-                Window win = createOldWaySourceWindow();
-                win.setModal(true);
-                UI.getCurrent().addWindow(win);
-            }
+        source.addClickListener((Button.ClickEvent event) -> {
+            Window win = createOldWaySourceWindow();
+            win.setModal(true);
+            UI.getCurrent().addWindow(win);
         });
 
         VerticalLayout wrapper = new VerticalLayout();
@@ -178,7 +183,7 @@ public class DemoUI extends UI {
         wrapper.setDefaultComponentAlignment(Alignment.TOP_CENTER);
         wrapper.setWidth("100%");
         wrapper.addComponents(new HorizontalLayout(label), anotherArea, clipboardButton, source);
-        layout.addComponent(wrapper,0,1);
+        layout.addComponent(wrapper, 1, 1);
     }
 
     private Window createOldWaySourceWindow() {
@@ -212,7 +217,7 @@ public class DemoUI extends UI {
                 + "		final TextArea area = new TextArea();\n"
                 + "\n"
                 + "		area.setValue(\"This is a sample text...\");\n"
-                + "		area.setId(\"tocopie\");		\n"            
+                + "		area.setId(\"tocopie\");		\n"
                 + "\n"
                 + "		Button b = new Button(\"Copy to clipboard\");\n"
                 + "		clipboard.apply(b,area);\n"
@@ -244,7 +249,7 @@ public class DemoUI extends UI {
         Label sourceCode = new Label("<pre><code>" + "        final TextArea area = new TextArea();\n"
                 + "\n"
                 + "        area.setValue(\"This is a sample text...\");\n"
-                + "        area.setId(\"tocopie\");\n"            
+                + "        area.setId(\"tocopie\");\n"
                 + "\n"
                 + "        JSClipboardButton b = new JSClipboardButton(area,\"Copy to clipboard\");\n"
                 + "        b.addSuccessListener(new JSClipboard.SuccessListener() {\n"

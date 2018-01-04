@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.vaadin.jsclipboard;
 
 import com.vaadin.server.Resource;
@@ -24,8 +23,8 @@ import com.vaadin.ui.Component;
  *
  * @author geanny
  */
-public class JSClipboardButton extends Button{
-    
+public class JSClipboardButton extends Button {
+
     private JSClipboard clipboard;
 
     public JSClipboardButton(Component target) {
@@ -34,7 +33,7 @@ public class JSClipboardButton extends Button{
 
     public JSClipboardButton(Component target, String caption) {
         super(caption);
-        this.initClipboard(target);        
+        this.initClipboard(target);
     }
 
     public JSClipboardButton(Component target, Resource icon) {
@@ -51,13 +50,12 @@ public class JSClipboardButton extends Button{
         super(caption, listener);
         this.initClipboard(target);
     }
-    
-    
-    private void initClipboard(Component target){
+
+    private void initClipboard(Component target) {
         this.clipboard = new JSClipboard();
         this.clipboard.apply(this, target);
     }
-    
+
     public void addSuccessListener(JSClipboard.SuccessListener listener) {
         this.clipboard.addSuccessListener(listener);
     }
@@ -65,5 +63,17 @@ public class JSClipboardButton extends Button{
     public void addErrorListener(JSClipboard.ErrorListener listener) {
         this.clipboard.addErrorListener(listener);
     }
-        
+
+    public void setClipboardText(String text) {
+        this.clipboard.setText(text);
+    }
+
+    @Override
+    public void setEnabled(boolean enabled) {
+        super.setEnabled(enabled); 
+        this.clipboard.setEnabled(enabled);
+    }
+    
+    
+
 }

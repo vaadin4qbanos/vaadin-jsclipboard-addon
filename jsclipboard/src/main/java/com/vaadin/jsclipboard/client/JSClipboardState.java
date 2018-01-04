@@ -10,5 +10,8 @@ public class JSClipboardState extends JavaScriptExtensionState {
     public String targetSelector;
     public String selector = "clipboard";
     public boolean success;
-    public String buttonClass;
+    public String buttonClass; 
+    public boolean enableClipboard = true;
+    
+    
 }
