@@ -1,6 +1,17 @@
-# JSClipboard Add-on for Vaadin 7
+# JSClipboard Add-on for Vaadin 7 & 8
 
-JSClipboard is an JS extension for Vaadin 7 that allow to copy arbitrary text to clipboard using JavaScript only.
+
+[TOC]
+
+
+
+JSClipboard is an JS extension for Vaadin 7 & 8 that allow to copy arbitrary text to clipboard using JavaScript only.
+
+## Improvements
+- It allows stylize the button.
+- The method setEnabled works correctly.
+- Adds a button that works as a wrapper for the extension (JSClipboardButton)
+
 
 ## Download release
 
@@ -20,7 +31,7 @@ To see the demo, navigate to http://localhost:8080/jsclipboard-demo
 
 ## Issue tracking
 
-The issues for this add-on are tracked on its github.com page. All bug reports and feature requests are appreciated. 
+The issues for this add-on are tracked on its github.com page. All bug reports and feature requests are appreciated.
 
 ## Contributions
 
@@ -42,26 +53,64 @@ JSClipboard is written by Rubén Bresler Camps and Geanny Hernández Rodríguez
 
 ## Getting started
 
-Here is a simple example on how to try out the add-on component (this way is deprecated):
+Here is a simple example on how to try out the add-on component:
 
 ```java
 final JSClipboard clipboard = new JSClipboard();
+
 final TextArea area = new TextArea();
+
 area.setValue("This is a sample text...");
-area.addBlurListener(new BlurListener() {
+area.setId("tocopie");
+
+Button b = new Button("Copy to clipboard");
+clipboard.apply(b, area);
+clipboard.addSuccessListener(new JSClipboard.SuccessListener() {
 
     @Override
-    public void blur(BlurEvent event) {
-        clipboard.setText(area.getValue());
+    public void onSuccess() {
+        Notification.show("Copy to clipboard successful");
+    }
+});
+clipboard.addErrorListener(new JSClipboard.ErrorListener() {
+
+    @Override
+    public void onError() {
+        Notification.show("Copy to clipboard unsuccessful", Notification.Type.ERROR_MESSAGE);
+    }
+});
+```
+
+Another way is using a component wrapper `JSClipboardButton` like this:
+
+```java
+final TextArea area = new TextArea();
+
+area.setValue("This is a sample text...");
+area.setId("tocopie");
+area.focus();
+
+JSClipboardButton b = new JSClipboardButton(area, "Copy to clipboard");
+b.addSuccessListener(new JSClipboard.SuccessListener() {
+
+    @Override
+    public void onSuccess() {
+        Notification.show("Copy to clipboard successful");
+    }
+});
+b.addErrorListener(new JSClipboard.ErrorListener() {
+
+    @Override
+    public void onError() {
+        Notification.show("Copy to clipboard unsuccessful", Notification.Type.ERROR_MESSAGE);
     }
 });
 
-Button b = new Button("Copy to clipboard");
-clipboard.apply(b);
-layout.addComponents(area, b);
 ```
 
-This is the new way to do copy to clipboard using the library javascript [clipboard.js](https://clipboardjs.com/)
+==*Note: It was decided to revert back to an extension so that the component could be stylized easily*==
+
+This way to do copy to clipboard using the library javascript (This way is deprecated) [clipboard.js](https://clipboardjs.com/)
 ```java
 final TextArea anotherArea = new TextArea();
 anotherArea.setId("clipboardTarget");

@@ -1,29 +1,66 @@
 window.com_vaadin_jsclipboard_JSClipboard = function() {
-    var cb = this;
 
-    var clickHandler = function(event) {
-        var copyTextArea = document.createElement('textarea');
-        copyTextArea.focus();
-        copyTextArea.value = cb.getState().text;
+    var clipboardBtn = this;
+    var state = this.getState();
 
-        document.body.appendChild(copyTextArea);
-        copyTextArea.select();
-
-        try {
-            var successful = document.execCommand('copy');
-            var msg = successful ? true : false;
-            cb.notifyStatus(msg);
-            console.log('Copying text command was ' + ((msg) ? 'successful' : 'unsuccessful'));
-        } catch (err) {
-            console.log('Oops, unable to copy');
-            cb.notifyStatus(false);
+    var ClipboardLibrary = function() {
+        this.destroy();
+        this.init();
+        if (state.enableClipboard) {
+            this.setup();
         }
-        document.body.removeChild(copyTextArea);
     };
 
-    this.attachClickListener = function(selector) {
-        var copyTextareaBtn = document.querySelector(selector);
-        copyTextareaBtn.addEventListener('click', clickHandler);
+    ClipboardLibrary.prototype = function() {
+
+        var init = function() {
+            if (state.targetSelector) {
+                trigger().dataset.clipboardTarget = state.targetSelector;
+            }
+
+            if (state.text) {
+                trigger().dataset.clipboardText = state.text;
+            }
+        };
+
+        var setup = function() {
+            this.clipboard = new Clipboard("." + state.buttonClass);
+
+            this.clipboard.on('success', function(e) {
+                clipboardBtn.notifyStatus(true);
+                e.clearSelection();
+            });
+
+            this.clipboard.on('error', function(e) {
+                clipboardBtn.notifyStatus(false);
+            });
+        };
+
+        var destroy = function() {
+            if (this.clipboard) {
+                this.clipboard.destroy();
+            }
+        };
+
+
+        var trigger = function() {
+            return document.getElementsByClassName(state.buttonClass)[0];
+        };
+
+        return {
+            init: init,
+            setup: setup,
+            destroy: destroy
+        };
+    }();
+
+    var clipboardLibrary = new ClipboardLibrary();
+    this.onStateChange = function() {
+        clipboardLibrary.destroy();
+
+        clipboardLibrary = new ClipboardLibrary();
     };
+
+
 };
 
