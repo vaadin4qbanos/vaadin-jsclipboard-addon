@@ -91,7 +91,7 @@ public abstract class AbstractExampleView extends VerticalLayout implements View
         });
 
         Button source = new Button(VaadinIcons.CODE);
-        source.addClickListener((Button.ClickEvent event) -> {
+        source.addClickListener(event -> {
             Window win = createSourceWindowTab2();
             win.setModal(true);
             UI.getCurrent().addWindow(win);

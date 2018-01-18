@@ -18,7 +18,7 @@ import elemental.json.JsonArray;
 import java.util.UUID;
 
 @JavaScript({"bower_components/clipboard/dist/clipboard.min.js", "clipboard.js"})
-public class JSClipboard extends AbstractJavaScriptExtension {
+public class JSClipboard extends AbstractJavaScriptExtension implements Serializable {
 
     private static final long serialVersionUID = 5382186808485208584L;
 
@@ -32,9 +32,9 @@ public class JSClipboard extends AbstractJavaScriptExtension {
         void onError();
     }
 
-    List<SuccessListener> successListeners = new ArrayList<SuccessListener>();
+    List<SuccessListener> successListeners = new ArrayList<>();
 
-    List<ErrorListener> errorListeners = new ArrayList<ErrorListener>();
+    List<ErrorListener> errorListeners = new ArrayList<>();
 
     public void addSuccessListener(SuccessListener listener) {
         if (listener != null) {
