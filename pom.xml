@@ -102,6 +102,7 @@
                 <version>2.5</version>
                 <configuration>
                     <tagNameFormat>v@{project.version}</tagNameFormat>
+                    <goals>install</goals>
                 </configuration>
             </plugin>
 
