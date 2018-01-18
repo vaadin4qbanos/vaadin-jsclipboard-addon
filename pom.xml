@@ -11,7 +11,7 @@
     <description>JSClipboard Add-on root project</description>
 
     <properties>
-        <vaadin.version>8.0.2</vaadin.version>
+        <vaadin.version>8.2.1</vaadin.version>
         <vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
     </properties>
 
